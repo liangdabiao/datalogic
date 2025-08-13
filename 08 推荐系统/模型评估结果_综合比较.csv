@@ -1,0 +1,7 @@
+﻿Metric,Value,Model
+Precision@5,0.02,User-Based CF
+Recall@5,0.1,User-Based CF
+Users_Evaluated,30.0,User-Based CF
+Precision@5,0.0,Item-Based CF
+Recall@5,0.0,Item-Based CF
+Users_Evaluated,30.0,Item-Based CF
