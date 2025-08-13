@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房价数据分析可视化报告</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #34495e;
+        }
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .chart-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .insight-box {
+            background-color: #e8f4fc;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .key-point {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📈 房价数据分析可视化报告</h1>
+        <p>基于100套房产样本的深度洞察</p>
+    </header>
+
+    <main>
+        <section class="section">
+            <h2>📊 项目概览</h2>
+            <p>本次分析基于100套房产样本数据，通过科学的数据分析和可视化手段，深入挖掘了房价的关键影响因素，并构建了高精度的预测模型。</p>
+            
+            <div class="insight-box">
+                <strong>核心成果:</strong>
+                <ul>
+                    <li>构建了R²=0.990的高精度房价预测模型</li>
+                    <li>识别了房价的五大关键驱动因子</li>
+                    <li>提供了详尽的可视化分析和投资建议</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🖼️ 综合可视化分析</h2>
+            <p>以下图表展示了房价数据的多维度分析结果，包括价格分布、特征关联性、地段价值等。</p>
+            
+            <div class="chart-container">
+                <h3>综合分析图表</h3>
+                <img src="房价分析综合可视化.png" alt="房价分析综合可视化">
+            </div>
+            
+            <div class="chart-container">
+                <h3>中文房价分析图</h3>
+                <img src="中文房价分析图.png" alt="中文房价分析图">
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🎯 关键发现</h2>
+            
+            <h3>价格驱动因子排序</h3>
+            <p>基于随机森林模型的特征重要性分析，我们确定了房价的五大关键影响因素：</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>特征</th>
+                        <th>重要性</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><span class="key-point">面积</span></td>
+                        <td>45.2%</td>
+                        <td>绝对主因 - 每增加1㎡，预估价格提升约1.1万</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><span class="key-point">房间数</span></td>
+                        <td>26.7%</td>
+                        <td>结构因素 - 每增加1个房间，约增加20-30万</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><span class="key-point">距离总分</span></td>
+                        <td>12.5%</td>
+                        <td>地段价值 - 距离地铁/学校/商场越近，价格越高</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><span class="key-point">房龄</span></td>
+                        <td>7.5%</td>
+                        <td>折旧效应 - 房龄每增加1年，降价约5万</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><span class="key-point">装修等级</span></td>
+                        <td>4.0%</td>
+                        <td>舒适度溢价 - 豪华装修比毛坯溢价约15-20万</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>相关性分析</h3>
+            <div class="insight-box">
+                <p><strong>强正相关特征 (>0.8):</strong></p>
+                <ul>
+                    <li>面积 (0.974) - 最强正相关</li>
+                    <li>卫生间数 (0.948)</li>
+                    <li>房间数 (0.931)</li>
+                    <li>小区类型 (0.890)</li>
+                </ul>
+                <p><strong>显著负相关特征 (<-0.4):</strong></p>
+                <ul>
+                    <li>房龄 (-0.909) - 年龄越大，价格越低</li>
+                    <li>距离总分 (-0.822) - 距离越远，价格越低</li>
+                    <li>房间密度 (-0.467) - 使用效率越低，价格越低</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🏆 模型表现</h2>
+            <p>我们对比了多种机器学习模型的性能，随机森林模型表现最佳：</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>模型</th>
+                        <th>R²分数</th>
+                        <th>MAE</th>
+                        <th>RMSE</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="key-point">随机森林</span></td>
+                        <td><strong>0.990</strong></td>
+                        <td><strong>23,415</strong></td>
+                        <td><strong>39,281</strong></td>
+                        <td>最佳模型</td>
+                    </tr>
+                    <tr>
+                        <td>线性回归</td>
+                        <td>0.957</td>
+                        <td>66,139</td>
+                        <td>80,367</td>
+                        <td>解释性强</td>
+                    </tr>
+                    <tr>
+                        <td>决策树</td>
+                        <td>0.949</td>
+                        <td>51,000</td>
+                        <td>87,807</td>
+                        <td>过拟合风险</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>💡 业务洞察</h2>
+            
+            <h3>装修溢价效应</h3>
+            <div class="insight-box">
+                <ul>
+                    <li><strong>豪华装修</strong> 比毛坯均价溢价约 <strong>+40%</strong></li>
+                    <li><strong>精装修</strong> 比简装修均价溢价约 <strong>+20%</strong></li>
+                </ul>
+            </div>
+            
+            <h3>小区等级溢价</h3>
+            <div class="insight-box">
+                <ul>
+                    <li><strong>豪华小区</strong> 价格约为 <strong>1,400万+</strong></li>
+                    <li><strong>高档小区</strong> 价格约为 <strong>680万</strong>（基准线）</li>
+                    <li><strong>普通小区</strong> 价格约为 <strong>380万</strong></li>
+                </ul>
+            </div>
+            
+            <h3>地段价值分析</h3>
+            <div class="insight-box">
+                <ul>
+                    <li><strong>地铁距离</strong> 每远1km，平均降价 <strong>30万</strong></li>
+                    <li><strong>学校距离</strong> 每远1km，平均降价 <strong>25万</strong></li>
+                    <li><strong>综合距离</strong> 每增加1分，平均降价 <strong>10万</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🚀 投资建议</h2>
+            
+            <h3>高价值房产特征组合</h3>
+            <ol>
+                <li><strong>黄金地段</strong>: 面积&gt;120㎡ + 距离&lt;1km + 5年内新房</li>
+                <li><strong>投资热点</strong>: 中档装修 + 2-3房 + 距离&lt;1.5km</li>
+                <li><strong>价格洼地</strong>: 老房改造潜力 + 地段升级预期</li>
+            </ol>
+            
+            <h3>避免投资陷阱</h3>
+            <ul>
+                <li><strong>老旧房源</strong>: 房龄&gt;15年需慎重考虑</li>
+                <li><strong>偏远地段</strong>: 距离&gt;2km的价格增长空间有限</li>
+                <li><strong>过度装修</strong>: 装修溢价与地段不匹配的风险</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>数据科学团队 | 2025年8月</p>
+        <p>技术栈: Python, scikit-learn, pandas, numpy, matplotlib</p>
+    </footer>
+</body>
+</html>
