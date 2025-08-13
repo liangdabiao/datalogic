@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AB测试深入分析报告</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif, "SimHei";
+            margin: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ecf0f1;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .insight {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .key-finding {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .conclusion {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            overflow-x: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>AB测试深入分析报告</h1>
+        <p>数据来源: AB测试.csv | 分析日期: 2025年8月13日</p>
+    </div>
+
+    <div class="section">
+        <h2>1. 核心洞察 (Executive Summary)</h2>
+        <div class="key-finding">
+            <p>虽然从整体上看，新页面并未显著提升用户的购买转化率或7日留存率，但深入的细分市场分析揭示了一个关键发现：</p>
+            <p style="font-size: 1.2em; text-align: center;">新页面对 <span style="color: #e74c3c;">“低价值用户”</span> 群体具有显著的积极影响，能有效提升其购买转化率。</p>
+            <p>对于“高价值用户”，页面改版的效果则不明显。这一发现对精细化运营和产品迭代策略具有重要指导意义。</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. 数据概览</h2>
+        <ul>
+            <li><strong>总用户数:</strong> 3000</li>
+            <li><strong>分组变量:</strong> 页面版本 (旧页面, 新页面)</li>
+            <li><strong>结果变量:</strong> 是否购买 (转化率), retention_7 (7日留存率)</li>
+            <li><strong>用户特征:</strong> 性别, 累计消费次数, 价值组别 (高, 低)</li>
+        </ul>
+        
+        <h3>用户特征分布</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>特征</th>
+                    <th>类别</th>
+                    <th>数量</th>
+                    <th>占比</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">性别</td>
+                    <td>男</td>
+                    <td>1720</td>
+                    <td>57.33%</td>
+                </tr>
+                <tr>
+                    <td>女</td>
+                    <td>1280</td>
+                    <td>42.67%</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">价值组别</td>
+                    <td>高</td>
+                    <td>1481</td>
+                    <td>49.37%</td>
+                </tr>
+                <tr>
+                    <td>低</td>
+                    <td>1519</td>
+                    <td>50.63%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. 核心指标分析</h2>
+        
+        <h3>整体转化率</h3>
+        <p>新旧页面的整体转化率非常接近。</p>
+        <div class="chart-container">
+            <img src="整体转化率.png" alt="整体转化率">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>页面版本</th>
+                    <th>转化率</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>新页面</td>
+                    <td>43.53%</td>
+                </tr>
+                <tr>
+                    <td>旧页面</td>
+                    <td>41.80%</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>T检验结果:</strong> p值 > 0.05，差异不显著。</p>
+
+        <h3>整体留存率</h3>
+        <p>新旧页面的7日留存率也十分接近。</p>
+        <div class="chart-container">
+            <img src="整体留存率.png" alt="整体留存率">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>页面版本</th>
+                    <th>7日留存率</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>新页面</td>
+                    <td>18.80%</td>
+                </tr>
+                <tr>
+                    <td>旧页面</td>
+                    <td>17.60%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>4. 细分市场分析 (关键发现)</h2>
+        
+        <h3>按价值组别细分的转化率</h3>
+        <p>这是本次分析最重要的发现。新页面对不同价值用户的影响截然不同。</p>
+        <div class="chart-container">
+            <img src="细分市场转化率.png" alt="细分市场转化率">
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>价值组别</th>
+                    <th>页面版本</th>
+                    <th>转化率</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">低价值用户</td>
+                    <td>新页面</td>
+                    <td>46.90%</td>
+                </tr>
+                <tr>
+                    <td>旧页面</td>
+                    <td>41.62%</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">高价值用户</td>
+                    <td>新页面</td>
+                    <td>39.77%</td>
+                </tr>
+                <tr>
+                    <td>旧页面</td>
+                    <td>41.97%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>统计检验结果</h3>
+        <ul>
+            <li><strong>低价值用户群体:</strong> T检验 p值 = 0.0385 < 0.05，<span style="color: green;">结果可信</span>。新页面显著提升了该群体的转化率。</li>
+            <li><strong>高价值用户群体:</strong> T检验 p值 = 0.3912 > 0.05，<span style="color: orange;">结果不可信</span>。新旧页面差异不显著。</li>
+        </ul>
+
+        <div class="key-finding">
+            <p>新页面设计可能更贴合低价值用户的偏好或使用习惯，从而有效提升了他们的购买意愿。</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. 交互效应分析</h2>
+        
+        <h3>页面版本 * 价值组别</h3>
+        <p>该图表清晰地展示了新页面对低价值用户的积极效应。</p>
+        <div class="chart-container">
+            <img src="交互效应_价值组别.png" alt="页面版本 * 价值组别">
+        </div>
+
+        <h3>页面版本 * 性别</h3>
+        <p>按性别分组的转化率分析。</p>
+        <div class="chart-container">
+            <img src="交互效应_性别.png" alt="页面版本 * 性别">
+        </div>
+
+        <h3>页面版本 * 消费水平 (累计消费次数分箱)</h3>
+        <p>用户消费水平与转化率呈正相关。新旧页面在各消费水平段的转化率差异不大。</p>
+        <div class="chart-container">
+            <img src="交互效应_消费分箱.png" alt="页面版本 * 消费分箱">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>6. 稳健性检查</h2>
+        
+        <h3>随机分组检验</h3>
+        <ul>
+            <li><strong>性别分布:</strong> 卡方检验 p值 = 0.3561 > 0.05。两组性别分布<span style="color: green;">无显著差异</span>，随机分配假设在性别维度上成立。</li>
+            <li><strong>价值组别分布:</strong> 卡方检验 p值 = 0.0236 < 0.05。两组价值组别分布<span style="color: red;">存在显著差异</span>，可能存在轻微的选择偏差。
+                <div class="insight">
+                    <p><strong>解读:</strong> 尽管存在价值组别的轻微不平衡，但这并不影响我们对低价值用户子群体内部比较的结论（因为比较是在该子群体内部进行的）。不过，在解释整体结果时需谨慎。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>7. 结论与建议</h2>
+        <div class="conclusion">
+            <h3>结论</h3>
+            <ol>
+                <li><strong>整体影响甚微:</strong> 新页面设计对所有用户的整体转化率和留存率提升有限。</li>
+                <li><strong>细分市场效果显著:</strong> 新页面对“低价值用户”群体的转化率有显著的正面影响。</li>
+                <li><strong>用户异质性:</strong> 用户价值是影响页面效果的关键因素，一刀切的评估方式可能掩盖真正的价值。</li>
+            </ol>
+        </div>
+
+        <div class="insight">
+            <h3>建议</h3>
+            <ol>
+                <li><strong>个性化策略:</strong> 考虑根据用户价值（或其他相关特征）实施个性化页面展示。例如，向低价值用户默认展示新页面，以提升其转化率。</li>
+                <li><strong>深入探究:</strong> 进一步分析新页面的哪些具体元素或流程对低价值用户更具吸引力，以便将成功经验复制到其他用户群体或产品迭代中。</li>
+                <li><strong>关注高价值用户:</strong> 分析新页面为何未能提升甚至可能略微降低了高价值用户的转化率，是否存在不适应其需求的点。</li>
+                <li><strong>未来测试:</strong> 在后续的A/B测试中，确保关键用户特征（如价值组别）在各组间的分布更加均衡，以提高分析的稳健性。</li>
+            </ol>
+        </div>
+    </div>
+
+</body>
+</html>
