@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乳腺检查数据分析报告</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .image-container {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #ecf0f1;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .conclusion {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>乳腺检查数据分析与逻辑回归建模报告</h1>
+
+        <div class="section">
+            <h2>1. 项目概述</h2>
+            <p>本报告旨在对“某地乳腺检查数据”进行探索性数据分析，并使用逻辑回归（Logistic Regression）模型预测诊断结果（确诊/健康）。报告包含了数据处理、模型构建、评估以及结果可视化的全过程。</p>
+        </div>
+
+        <div class="section">
+            <h2>2. 数据概览</h2>
+            <p>数据集包含 569 条记录，每条记录有 32 个字段，其中包括一个ID、一个诊断结果（目标变量）以及30个数值型特征。</p>
+            <p><strong>目标变量分布:</strong></p>
+            <table>
+                <tr>
+                    <th>诊断结果</th>
+                    <th>数量</th>
+                </tr>
+                <tr>
+                    <td>健康</td>
+                    <td>357</td>
+                </tr>
+                <tr>
+                    <td>确诊</td>
+                    <td>212</td>
+                </tr>
+            </table>
+            <p>数据集中没有缺失值，数据质量良好。</p>
+        </div>
+
+        <div class="section">
+            <h2>3. 模型构建与评估</h2>
+            <p>我们使用了逻辑回归模型进行二分类预测。在建模前，对特征进行了标准化处理，并将数据集按 7:3 的比例划分为训练集和测试集。</p>
+            
+            <h3>3.1 模型性能指标</h3>
+            <table>
+                <tr>
+                    <th>指标</th>
+                    <th>测试集得分</th>
+                </tr>
+                <tr>
+                    <td>准确率 (Accuracy)</td>
+                    <td>0.9708</td>
+                </tr>
+                <tr>
+                    <td>精确率 (Precision)</td>
+                    <td>0.9836</td>
+                </tr>
+                <tr>
+                    <td>召回率 (Recall)</td>
+                    <td>0.9375</td>
+                </tr>
+                <tr>
+                    <td>F1 分数 (F1-Score)</td>
+                    <td>0.9600</td>
+                </tr>
+                <tr>
+                    <td>AUC</td>
+                    <td>0.9975</td>
+                </tr>
+            </table>
+            <p>模型在各项指标上均表现出色，显示出强大的预测能力。</p>
+
+            <h3>3.2 混淆矩阵</h3>
+            <p>混淆矩阵直观地展示了模型在测试集上的分类结果。</p>
+            <div class="image-container">
+                <img src="confusion_matrix.png" alt="Confusion Matrix">
+            </div>
+
+            <h3>3.3 ROC 曲线</h3>
+            <p>ROC 曲线下面积（AUC）为 0.9975，表明模型区分正负样本的能力非常强。</p>
+            <div class="image-container">
+                <img src="roc_curve.png" alt="ROC Curve">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. 模型解释</h2>
+            <p>通过分析逻辑回归模型的系数，我们可以了解哪些特征对预测结果（是否确诊）影响最大。以下是按系数绝对值排序的前10个特征：</p>
+            <table>
+                <tr>
+                    <th>特征</th>
+                    <th>系数</th>
+                    <th>系数绝对值</th>
+                </tr>
+                <tr>
+                    <td>最差纹理</td>
+                    <td>1.3843</td>
+                    <td>1.3843</td>
+                </tr>
+                <tr>
+                    <td>半径的标准误差</td>
+                    <td>1.2051</td>
+                    <td>1.2051</td>
+                </tr>
+                <tr>
+                    <td>最差对称性</td>
+                    <td>1.0857</td>
+                    <td>1.0857</td>
+                </tr>
+                <tr>
+                    <td>面积的标准误差</td>
+                    <td>0.9121</td>
+                    <td>0.9121</td>
+                </tr>
+                <tr>
+                    <td>致密度的标准误差</td>
+                    <td>-0.9046</td>
+                    <td>0.9046</td>
+                </tr>
+                <tr>
+                    <td>最差面积</td>
+                    <td>0.8761</td>
+                    <td>0.8761</td>
+                </tr>
+                <tr>
+                    <td>平均凹点数</td>
+                    <td>0.8539</td>
+                    <td>0.8539</td>
+                </tr>
+                <tr>
+                    <td>最差半径</td>
+                    <td>0.8450</td>
+                    <td>0.8450</td>
+                </tr>
+                <tr>
+                    <td>最差凹度</td>
+                    <td>0.8325</td>
+                    <td>0.8325</td>
+                </tr>
+                <tr>
+                    <td>平均凹度</td>
+                    <td>0.8059</td>
+                    <td>0.8059</td>
+                </tr>
+            </table>
+            <p>可以看出，“最差纹理”和“半径的标准误差”等特征对预测结果有显著的正向影响，而“致密度的标准误差”则有较强的负向影响。</p>
+        </div>
+
+        <div class="section conclusion">
+            <h2>5. 结论与总结</h2>
+            <p>本次分析成功地使用逻辑回归模型对乳腺检查数据进行了建模。模型表现优异，各项评估指标均很高，能够有效地根据检查指标预测诊断结果。</p>
+            <p><strong>优点:</strong></p>
+            <ul>
+                <li>模型简单、可解释性强。</li>
+                <li>训练速度快。</li>
+                <li>在此数据集上取得了非常好的性能。</li>
+            </ul>
+            <p><strong>未来工作:</strong></p>
+            <ul>
+                <li>可以尝试更复杂的模型，如随机森林、XGBoost等，看是否能进一步提升性能。</li>
+                <li>进行更深入的特征工程，探索特征组合或非线性关系。</li>
+                <li>使用交叉验证等方法进行更稳健的模型评估。</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
