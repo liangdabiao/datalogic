@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>客户分群分析报告</title>
+    <style>
+        body {
+            font-family: 'SimHei', sans-serif;
+            margin: 40px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .summary-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            flex: 1 1 200px;
+            text-align: center;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .stat-label {
+            font-size: 1em;
+            color: #7f8c8d;
+        }
+        .chart-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even){background-color: #f2f2f2;}
+        .vip-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>电商平台客户分群分析报告</h1>
+        <p><strong>报告生成日期:</strong> 2025年8月15日</p>
+
+        <div class="section">
+            <h2>一、 执行摘要</h2>
+            <p>本次分析基于电商平台的历史交易数据，运用RFM模型（最近购买时间R、购买频率F、消费金额M）对980名客户进行了价值分群。分析结果显示，客户群体呈现出明显的分层结构，为精细化运营和精准营销提供了数据支持。</p>
+            <ul>
+                <li><strong>项目完成情况:</strong> 已完成</li>
+                <li><strong>总客户数:</strong> 980人</li>
+                <li><strong>高价值客户:</strong> 404人 (41.2%)</li>
+                <li><strong>中等价值客户:</strong> 326人 (33.3%)</li>
+                <li><strong>低价值客户:</strong> 250人 (25.5%)</li>
+            </ul>
+            <h3>营销建议</h3>
+            <ul>
+                <li><strong>高价值客户 (VIP):</strong> 应立即列入核心营销推广计划，提供专属优惠、新品优先体验、VIP客服等高价值服务，提升客户忠诚度和生命周期价值。</li>
+                <li><strong>中等价值客户:</strong> 需要制定激活策略，通过个性化推荐、定向优惠券、互动活动等方式，刺激其消费频次和金额，向高价值客户转化。</li>
+                <li><strong>低价值客户:</strong> 可考虑进行重新定位或作为品牌传播的基础受众，通过低成本营销活动维持联系，观察其潜在价值。</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>二、 核心数据概览</h2>
+            <div class="summary-stats">
+                <div class="stat-card">
+                    <div class="stat-value">980</div>
+                    <div class="stat-label">总客户数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">404</div>
+                    <div class="stat-label">高价值客户</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">326</div>
+                    <div class="stat-label">中价值客户</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">250</div>
+                    <div class="stat-label">低价值客户</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">￥1,686,636</div>
+                    <div class="stat-label">总营收</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">83.8%</div>
+                    <div class="stat-label">高价值客户营收贡献</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>三、 分群详细统计数据</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>客户价值</th>
+                        <th>客户数</th>
+                        <th>平均最近购买(天)</th>
+                        <th>平均购买频次</th>
+                        <th>平均消费金额 (￥)</th>
+                        <th>总营收贡献 (￥)</th>
+                        <th>营收贡献占比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>高价值 (High)</td>
+                        <td>404</td>
+                        <td>61.85</td>
+                        <td>171.78</td>
+                        <td>3,496.83</td>
+                        <td>1,412,719.09</td>
+                        <td>83.76%</td>
+                    </tr>
+                    <tr>
+                        <td>中价值 (Medium)</td>
+                        <td>326</td>
+                        <td>112.19</td>
+                        <td>39.02</td>
+                        <td>660.67</td>
+                        <td>215,379.37</td>
+                        <td>12.77%</td>
+                    </tr>
+                    <tr>
+                        <td>低价值 (Low)</td>
+                        <td>250</td>
+                        <td>115.44</td>
+                        <td>12.94</td>
+                        <td>234.15</td>
+                        <td>58,537.91</td>
+                        <td>3.47%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>四、 关键洞察与可视化</h2>
+            <p>以下图表直观地展示了客户分群的分布、各分群的营收贡献以及消费行为特征。</p>
+            <div class="chart-container">
+                <img src="customer_segmentation_dashboard.png" alt="客户分群分析仪表板">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>五、 VIP客户清单 (Top 10)</h2>
+            <p>以下是高价值客户中排名最前的10位VIP客户，他们是平台营收的主要贡献者。</p>
+            <div class="vip-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>用户码</th>
+                        <th>R值 (天)</th>
+                        <th>F值 (次)</th>
+                        <th>M值 (￥)</th>
+                        <th>总分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>15808</td>
+                        <td>305</td>
+                        <td>208</td>
+                        <td>3734.97</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>15379</td>
+                        <td>168</td>
+                        <td>194</td>
+                        <td>3703.29</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>15581</td>
+                        <td>120</td>
+                        <td>150</td>
+                        <td>3679.97</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>15491</td>
+                        <td>94</td>
+                        <td>154</td>
+                        <td>3100.09</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>14930</td>
+                        <td>108</td>
+                        <td>128</td>
+                        <td>2372.86</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>15704</td>
+                        <td>139</td>
+                        <td>117</td>
+                        <td>2293.62</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>15235</td>
+                        <td>217</td>
+                        <td>143</td>
+                        <td>2247.51</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>15665</td>
+                        <td>167</td>
+                        <td>116</td>
+                        <td>2242.01</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>15641</td>
+                        <td>104</td>
+                        <td>119</td>
+                        <td>1887.20</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>15797</td>
+                        <td>112</td>
+                        <td>8</td>
+                        <td>2207.40</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <p><em>完整VIP客户清单请参见附件 <code>vip_customers_list.csv</code>。</em></p>
+        </div>
+
+        <div class="section">
+            <h2>六、 数据质量报告摘要</h2>
+            <ul>
+                <li><strong>原始订单总数:</strong> 87,180</li>
+                <li><strong>唯一客户数:</strong> 985</li>
+                <li><strong>数据清洗:</strong> 移除了1,825条数量为负的订单和4条价格为负的记录。</li>
+                <li><strong>最终用于分析的客户数:</strong> 980</li>
+                <li><strong>总营收 (清洗后数据):</strong> ￥1,686,636.37</li>
+            </ul>
+            <p><em>详细数据验证报告请参见附件 <code>data_validation_report.txt</code>。</em></p>
+        </div>
+    </div>
+</body>
+</html>

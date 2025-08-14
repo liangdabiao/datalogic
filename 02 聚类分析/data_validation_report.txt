@@ -1,0 +1,48 @@
+============================================================
+CUSTOMER SEGMENTATION ANALYSIS VALIDATION REPORT
+============================================================
+Generated: 2025-08-15 01:26:09
+
+
+1. ORIGINAL DATA VALIDATION
+------------------------------
+Total orders: 87,180
+Unique customers: 985
+Date range: 1/1/2023 10:11 to 9/9/2022 9:20
+Total revenue: ￥274,195,464,940.35
+
+Data quality issues:
+- Negative quantities: 1,825
+- Negative prices: 4
+- Missing values: 0
+
+2. CLEANED DATA VALIDATION
+------------------------------
+Orders after cleaning: 85,355
+Final customer segments: 980
+
+3. CUSTOMER SEGMENT DISTRIBUTION
+------------------------------
+High: 404 customers (41.2%)
+Medium: 326 customers (33.3%)
+Low: 250 customers (25.5%)
+
+4. SEGMENT STATISTICS
+------------------------------
+                    R值                       F值                         M值                               总分        
+                  mean min  max     std    mean min   max     std     mean     min       max      std  mean min max
+customer_value                                                                                                     
+High             61.85   0  372   71.20  171.78   3  2379  204.62  3496.83  313.49  60767.90  6612.92  5.83   5   8
+Low             115.44   0  372  115.13   12.94   1    97   11.02   234.15    6.20   1293.03   173.97  1.52   0   2
+Medium          112.19   0  372  110.50   39.02   1   218   27.59   660.67   85.13  12393.70   822.11  3.54   3   4
+
+5. REVENUE ANALYSIS BY SEGMENT
+------------------------------
+                      订单金额               
+                       sum     mean count
+customer_value                           
+High            1412719.09  3496.83   404
+Low               58537.91   234.15   250
+Medium           215379.37   660.67   326
+
+Total revenue across all customers: ￥1,686,636.37
