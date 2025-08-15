@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINUX DO 社区数据分析报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1, h2, h3 { color: #333; }
+        .container { background-color: #fff; padding: 20px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .chart-container { width: 100%; height: 400px; margin-bottom: 20px; }
+        .insight { background-color: #e9f7fe; padding: 10px; border-left: 5px solid #4CAF50; margin-bottom: 10px; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>LINUX DO 社区数据分析报告</h1>
+        <p><strong>概览</strong>: 本报告基于 `article.csv` 数据集，深入分析了影响 LINUX DO 社区帖子热度（阅读量、回复量）的关键因素，探索了社区热门话题，并洞察了用户行为。</p>
+    </div>
+
+    <div class="container">
+        <h2>1. 高热度帖子特征分析</h2>
+        
+        <h3>高回复量帖子 (Top 10%)</h3>
+        <div class="insight">
+            <ul>
+                <li><strong>分类</strong>: "开发调优" 和 "福利羊毛" 及其子类是主要来源。</li>
+                <li><strong>标签</strong>: "人工智能"、"纯水"、"抽奖"、"公益推广"、"软件开发" 高频出现。</li>
+                <li><strong>标题关键词</strong>: "公益"、"API"、"Claude"、"抽奖"、"AI"、"教程"、"活动" 等。</li>
+            </ul>
+        </div>
+
+        <h3>高阅读量帖子 (Top 10%)</h3>
+        <div class="insight">
+            <ul>
+                <li><strong>分类</strong>: 与高回复量类似，"开发调优" 和 "福利羊毛" 系列是主力。</li>
+                <li><strong>标签</strong>: "人工智能"、"纯水"、"公告"、"软件开发"、"作品集" 高频。</li>
+                <li><strong>标题关键词</strong>: 与高回复量关键词相似。</li>
+            </ul>
+        </div>
+        <div class="insight">
+            <p><strong>总结</strong>: 高阅读量和高回复量的帖子在分类和标签上高度重合，说明吸引眼球的内容（如AI、福利）既能带来流量也能激发讨论。</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>2. 分类与标签影响力评估</h2>
+        
+        <h3>按分类 (`category`) 平均互动量</h3>
+        <div id="categoryChart" class="chart-container"></div>
+        <div class="insight">
+            <p><strong>洞察</strong>: "运营反馈" 类帖子平均互动量极高。"文档共建" 和 "福利羊毛" 系列也表现出色。</p>
+        </div>
+
+        <h3>按主标签 (`tag-1`) 平均互动量</h3>
+        <div id="tag1Chart" class="chart-container"></div>
+        <div class="insight">
+            <p><strong>洞察</strong>: "求资源"、"公告"、"DeepLX" 标签下的帖子具有压倒性的互动量。"抽奖" 标签的平均回复数也很高。</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>3. 内容类型与互动关系</h2>
+        <div id="contentTypeChart" class="chart-container"></div>
+        <div class="insight">
+            <p><strong>洞察</strong>: "抽奖/福利类"内容是激发用户参与（回复）的最有效手段，其互动率远超其他类型。"求助类"内容的互动率也相对较高。</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>4. 社区话题趋势分析</h2>
+        <div id="wordFrequencyChart" class="chart-container"></div>
+        <div class="insight">
+            <p><strong>洞察</strong>: 社区内最核心的话题围绕着"纯水"、"人工智能"、"快问快答"、"软件开发"以及"福利活动"("公益", "AFF", "抽奖") 展开。"网盘"资源分享也是一个重要主题。</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>5. 用户行为洞察 (互动率)</h2>
+        <!-- 由于互动率是单个帖子的指标，用文字描述其发现 -->
+        <div class="insight">
+            <ul>
+                <li><strong>互动率最高的帖子</strong>: 几乎全部是<strong>抽奖活动</strong>，互动率可高达50%以上。</li>
+                <li><strong>互动率最低的帖子</strong>: 多为<strong>资源分享帖</strong>或<strong>简单的图文分享</strong>，用户主要是浏览。</li>
+            </ul>
+        </div>
+        <div class="insight">
+            <p><strong>总结</strong>: 抽奖和福利活动是驱动用户深度参与（回复）的最核心动力。内容型帖子能带来流量，但用户参与度相对较低。</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>6. 附录：相关图表</h2>
+        <h3>各分类平均互动量</h3>
+        <img src="category_avg_interaction.png" alt="各分类平均互动量">
+        
+        <h3>各主标签平均互动量</h3>
+        <img src="tag-1_avg_interaction.png" alt="各主标签平均互动量">
+
+        <h3>内容类型与互动关系</h3>
+        <img src="content_type_interaction.png" alt="内容类型与互动关系">
+
+        <h3>社区高频词</h3>
+        <img src="community_word_frequency.png" alt="社区高频词">
+    </div>
+
+    <script>
+        // 图表数据 (从Python脚本的输出中提取关键数据)
+        // 为简化，这里使用示例数据。实际应用中，可以从CSV或JSON文件动态加载。
+        var categoryData = {
+            categories: ['运营反馈', '文档共建', '福利羊毛', '资源荟萃', '福利羊毛, Lv1', '开发调优, Lv1', '开发调优', '开发调优, Lv2', '搞七捻三, Lv1', '职场'],
+            avgReply: [2362.5, 655.0, 294.28, 172.10, 145.68, 95.47, 66.82, 53.75, 42.47, 40.33],
+            avgView: [123769.5, 29640.0, 3880.83, 5673.0, 1731.6, 1744.13, 1271.29, 1439.0, 717.08, 946.0]
+        };
+
+        var tag1Data = {
+            tags: ['求资源', '公告', 'DeepLX', '作品集', '抽奖', 'ChatGPT', '人工智能', '订阅节点', '职场', '树洞'],
+            avgReply: [4600.0, 2200.0, 1800.0, 325.0, 180.56, 173.0, 147.29, 123.0, 74.33, 65.8],
+            avgView: [103000.0, 158000.0, 112000.0, 14614.5, 558.22, 9600.0, 2382.78, 2258.75, 968.33, 1295.0]
+        };
+
+        var contentTypeData = {
+            types: ['抽奖/福利类', '其他/讨论类', '求助类', '教程类', 'AFF推广类', '分享类', '资讯类'],
+            avgReply: [342.73, 113.84, 97.18, 86.43, 79.43, 60.5, 49.23],
+            avgView: [2129.67, 4150.16, 2226.99, 2465.86, 1379.26, 1628.67, 1173.54],
+            avgRate: [0.3019, 0.0573, 0.0665, 0.0528, 0.0353, 0.0515, 0.0484] // 乘以100转为百分比
+        };
+
+        var wordFrequencyData = {
+            words: ['纯水', '人工智能', '快问快答', '软件开发', '公益', 'AFF', '抽奖', '什么', '病友', '网盘', '夸克网盘', 'Claude', '分享', '订阅', 'AI', 'API', '有没有', '免费', '模型', 'OpenAI'],
+            counts: [115, 104, 55, 47, 27, 24, 21, 19, 19, 18, 18, 16, 16, 14, 14, 13, 13, 13, 12, 11]
+        };
+
+        // 1. 分类平均互动量
+        var categoryChart = echarts.init(document.getElementById('categoryChart'));
+        var categoryOption = {
+            title: { text: 'Top 10 分类平均互动量' },
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['平均回复数', '平均阅读数'] },
+            xAxis: { type: 'category', data: categoryData.categories },
+            yAxis: { type: 'value' },
+            series: [
+                { name: '平均回复数', type: 'bar', data: categoryData.avgReply, itemStyle: { color: '#5470c6' } },
+                { name: '平均阅读数', type: 'bar', data: categoryData.avgView, itemStyle: { color: '#91cc75' } }
+            ]
+        };
+        categoryChart.setOption(categoryOption);
+
+        // 2. 主标签平均互动量
+        var tag1Chart = echarts.init(document.getElementById('tag1Chart'));
+        var tag1Option = {
+            title: { text: 'Top 10 主标签平均互动量' },
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['平均回复数', '平均阅读数'] },
+            xAxis: { type: 'category', data: tag1Data.tags },
+            yAxis: { type: 'value' },
+            series: [
+                { name: '平均回复数', type: 'bar', data: tag1Data.avgReply, itemStyle: { color: '#fac858' } },
+                { name: '平均阅读数', type: 'bar', data: tag1Data.avgView, itemStyle: { color: '#ee6666' } }
+            ]
+        };
+        tag1Chart.setOption(tag1Option);
+
+        // 3. 内容类型与互动关系
+        var contentTypeChart = echarts.init(document.getElementById('contentTypeChart'));
+        var contentTypeOption = {
+            title: { text: '各内容类型平均互动量与互动率' },
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['平均回复数', '平均阅读数', '平均互动率 (%)'] },
+            xAxis: { type: 'category', data: contentTypeData.types },
+            yAxis: [
+                { type: 'value', name: '数量' },
+                { type: 'value', name: '互动率 (%)', min: 0, max: 35, interval: 5, axisLabel: { formatter: '{value} %'} }
+            ],
+            series: [
+                { name: '平均回复数', type: 'bar', data: contentTypeData.avgReply, itemStyle: { color: '#5470c6' } },
+                { name: '平均阅读数', type: 'bar', data: contentTypeData.avgView, itemStyle: { color: '#91cc75' } },
+                { name: '平均互动率 (%)', type: 'line', yAxisIndex: 1, data: contentTypeData.avgRate.map(r => (r * 100).toFixed(2)), itemStyle: { color: '#fac858' } }
+            ]
+        };
+        contentTypeChart.setOption(contentTypeOption);
+
+        // 4. 社区高频词
+        var wordFrequencyChart = echarts.init(document.getElementById('wordFrequencyChart'));
+        var wordFrequencyOption = {
+            title: { text: '社区Top 20高频词' },
+            tooltip: {},
+            xAxis: { type: 'value' },
+            yAxis: { type: 'category', data: wordFrequencyData.words },
+            series: [{
+                type: 'bar',
+                data: wordFrequencyData.counts,
+                itemStyle: { color: '#73c0de' }
+            }]
+        };
+        wordFrequencyChart.setOption(wordFrequencyOption);
+
+    </script>
+
+</body>
+</html>
